@@ -7,11 +7,11 @@ Z: Integer;
 
 Begin
 
-Write('Р’РІРµРґРёС‚Рµ X: ');
+Write('Введите X: ');
 
 Readln(X);
 
-Write('Р’РІРµРґРёС‚Рµ Y: ');
+Write('Введите Y: ');
 
 Readln(Y);
 

@@ -2,9 +2,7 @@
 
 int main()
 {
-    setlocale(0, "");
-    SetConsoleCP(1251); // Ввод с консоли в кодировке 1251
-    //SetConsoleOutputCP(1251);
+    setlocale(0,"");
     string pascal_programm;
     bool chose;
     chose = menu();
@@ -12,8 +10,8 @@ int main()
         pascal_programm=reading_from_file();
     else
         pascal_programm=manualy();
+    cout << "Программа на C++" << endl << endl;
     change_to_c_plus_plus(pascal_programm);
-    //cout << program_to_main(pascal_programm);
-    //cout << endl << var(pascal_programm);
+    cout << endl;
     system("pause");
 }
