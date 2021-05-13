@@ -217,7 +217,7 @@ string change_to_c_plus_plus(string &pascal_program)
 {
     int length = pascal_program.length();
     string keyword = "";
-    bool program_check, var_check, write_check, writeln_check, readln_check, operation_check, end_check;
+    bool program_check = 0, var_check = 0, write_check = 0, writeln_check = 0, readln_check = 0, operation_check = 0;
     int i = 0;
     while (i != length)
     {
@@ -232,11 +232,6 @@ string change_to_c_plus_plus(string &pascal_program)
         {
             cout << var(pascal_program);
             var_check = 1;
-            keyword.clear();
-            i = 0;
-        }
-        if (keyword == "Begin")
-        {
             keyword.clear();
             i = 0;
         }
@@ -267,9 +262,19 @@ string change_to_c_plus_plus(string &pascal_program)
         if (keyword == "End.")
         {
             cout << end(pascal_program);
-            end_check = 1;
-            keyword.clear();
-            i = 0;
+            if (program_check)
+                cout << endl << endl << "Было использовано преобразование Program" << endl;
+            if (var_check)
+                cout << "Было использовано преобразование Var" << endl;
+            if (write_check)
+                cout << "Было использовано преобразование Write" << endl;
+            if (writeln_check)
+                cout << "Было использовано преобразование Writeln" << endl;
+            if (readln_check)
+                cout << "Было использовано преобразование Readln" << endl;
+            if (operation_check)
+                cout << "Было использовано преобразование Operation" << endl; 
+            cout << "Было использовано преобразование End" << endl;
             break;
         }
         if (keyword.find_first_of("+-*/:=") != string::npos)

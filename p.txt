@@ -1,20 +1,17 @@
-п»їProgram P1;
+Program P1;
 
 Var
 X: Integer;
 Y: Integer;
 Z: Integer;
-Awsv: Char;
-bfdvb: Boolean;
-tydmnj: String;
 
 Begin
 
-Write('Р’РІРµРґРёС‚Рµ X: ');
+Write('Введите X: ');
 
 Readln(X);
 
-Write('Р’РІРµРґРёС‚Рµ Y: ');
+Write('Введите Y: ');
 
 Readln(Y);
 
