@@ -4,7 +4,7 @@ int main()
 {
     setlocale(0, "");
     SetConsoleCP(1251); // Ввод с консоли в кодировке 1251
-    SetConsoleOutputCP(1251);
+    //SetConsoleOutputCP(1251);
     string pascal_programm;
     bool chose;
     chose = menu();
