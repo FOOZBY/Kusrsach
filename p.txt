@@ -1,4 +1,4 @@
-Program P1;
+п»їProgram P1;
 
 Var
 X: Integer;
@@ -10,11 +10,11 @@ tydmnj: String;
 
 Begin
 
-Write('Введите X: ');
+Write('Р’РІРµРґРёС‚Рµ X: ');
 
 Readln(X);
 
-Write('Введите Y: ');
+Write('Р’РІРµРґРёС‚Рµ Y: ');
 
 Readln(Y);
 

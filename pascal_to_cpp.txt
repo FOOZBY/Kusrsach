@@ -1,4 +1,4 @@
-Program P1;				> #include <iostream>
+п»їProgram P1;				> #include <iostream>
 					  using namespace std;
 					  int main()
 					  {
@@ -11,11 +11,11 @@ Z: Integer;
 
 Begin                       		> "nothing"
 
-Write('Введите X: ');			> cout << "Введите X: ";
+Write('Р’РІРµРґРёС‚Рµ X: ');			> cout << "Р’РІРµРґРёС‚Рµ X: ";
 
 Readln(X);				> cin >> X;
 
-Write('Введите Y: ');			> cout << "Введите Y: ";
+Write('Р’РІРµРґРёС‚Рµ Y: ');			> cout << "Р’РІРµРґРёС‚Рµ Y: ";
 
 Readln(Y);				> cin >> X;
 
@@ -30,4 +30,4 @@ End.					> return 0;
 
 
 
-//все ключевые слова всегда с большой буквы
+//РІСЃРµ РєР»СЋС‡РµРІС‹Рµ СЃР»РѕРІР° РІСЃРµРіРґР° СЃ Р±РѕР»СЊС€РѕР№ Р±СѓРєРІС‹
