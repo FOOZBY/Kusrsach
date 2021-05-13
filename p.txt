@@ -1,0 +1,27 @@
+Program P1;
+
+Var
+X: Integer;
+Y: Integer;
+Z: Integer;
+Awsv: Char;
+bfdvb: Boolean;
+tydmnj: String;
+
+Begin
+
+Write('¬ведите X: ');
+
+Readln(X);
+
+Write('¬ведите Y: ');
+
+Readln(Y);
+
+Z := X + Y;
+
+Write('Z = ');
+
+Writeln(Z);
+
+End.

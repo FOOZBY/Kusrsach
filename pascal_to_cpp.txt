@@ -1,0 +1,33 @@
+Program P1;				> #include <iostream>
+					  using namespace std;
+					  int main()
+					  {
+					
+
+Var                        		> int X;
+X: Integer;				  int Y;
+Y: Integer; 				  int Z;
+Z: Integer;
+
+Begin                       		> "nothing"
+
+Write('¬ведите X: ');			> cout << "¬ведите X: ";
+
+Readln(X);				> cin >> X;
+
+Write('¬ведите Y: ');			> cout << "¬ведите Y: ";
+
+Readln(Y);				> cin >> X;
+
+Z := X + Y;				> Z = X + Y;
+
+Write('Z = ');				> cout << "Z = ";
+
+Writeln(Z);				> cout << Z << endl;
+
+End.					> return 0;
+					  }
+
+
+
+//все ключевые слова всегда с большой буквы
