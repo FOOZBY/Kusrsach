@@ -1,24 +1,14 @@
 Program P1;
-
 Var
 X: Integer;
 Y: Integer;
 Z: Integer;
-
 Begin
-
 Write('¬ведите X: ');
-
 Readln(X);
-
 Write('¬ведите Y: ');
-
 Readln(Y);
-
 Z := X + Y;
-
 Write('Z = ');
-
 Writeln(Z);
-
 End.
