@@ -16,7 +16,7 @@ double getnum()//проверка ввода
     return value;
 }
 
-void show_pascal(string program,bool type)
+void show_pascal(string program, bool type)
 {
     SetConsoleTextAttribute(Con, 11);
     switch (type)
@@ -59,7 +59,7 @@ string reading_from_file()
         {
             getline(in, pascal_program, '\0');
             cout << endl << "Изначальная программа на Pascal: " << endl;
-            show_pascal(pascal_program,0);
+            show_pascal(pascal_program, 0);
             cout << endl << endl;
             return pascal_program;
             break;
@@ -81,10 +81,10 @@ string manualy()
 {
     string  pascal_program;
     getline(cin, pascal_program);
-    show_pascal(pascal_program,1);
+    show_pascal(pascal_program, 1);
     return pascal_program;
 }
-string program_to_main(string & pascal_program, bool change)//done
+string program_to_main(string& pascal_program, bool change)//done
 {
     string ret;
     if (change)
@@ -94,14 +94,14 @@ string program_to_main(string & pascal_program, bool change)//done
         program_check = 1;
         return "#include <iostream>\n#include <string>\nusing namespace std;\nint main()\n{\n";
     }
-    else 
+    else
     {
         int i = pascal_program.find("Var");
         ret = pascal_program.substr(0, i);
         pascal_program.erase(0, i);
         return ret;
     }
-        
+
 }//done
 string var(string& pascal_program, bool change)//done
 {
@@ -161,11 +161,11 @@ string var(string& pascal_program, bool change)//done
         var_check = 1;
         return var_cpp;
     }
-    else 
+    else
     {
         int i = pascal_program.find("Begin");
         string ret = pascal_program.substr(0, i);
-        pascal_program.erase(0, i+5);
+        pascal_program.erase(0, i + 5);
         return ret;
     }
 }//done
@@ -216,7 +216,7 @@ string write_or_writeln(string& pascal_program, bool type, bool change)//done
     else
     {
         int i = pascal_program.find("\n");
-        string ret = pascal_program.substr(0, i+1);
+        string ret = pascal_program.substr(0, i + 1);
         pascal_program.erase(0, pascal_program.find("\n"));
         return ret;
     }
@@ -240,7 +240,7 @@ string readln(string& pascal_program, bool change)
     else
     {
         int i = pascal_program.find("\n");
-        string ret = pascal_program.substr(0, i+1);
+        string ret = pascal_program.substr(0, i + 1);
         pascal_program.erase(0, pascal_program.find("\n"));
         return ret;
     }
@@ -264,7 +264,7 @@ string operations(string& pascal_program, bool change)
     else
     {
         int i = pascal_program.find("\n");
-        string ret = pascal_program.substr(0, i+1);
+        string ret = pascal_program.substr(0, i + 1);
         pascal_program.erase(0, i);
         return ret;
     }
@@ -283,112 +283,7 @@ string end(string& pascal_program, bool change)
     }
 }
 
-//string change_to_c_plus_plus(string &pascal_program, string chosed_changes)
-//{
-//    SetConsoleTextAttribute(Con, 11);
-//    int length = pascal_program.length();
-//    string keyword = "";
-//    bool program_check = 0, var_check = 0, write_check = 0, writeln_check = 0, readln_check = 0, operation_check = 0;
-//    int i = 0;
-//    while (i != length)
-//    {
-//        if (keyword == "Program")
-//        {
-//            cout << program_to_main(pascal_program);
-//            program_check = 1;
-//            keyword.clear();
-//            i = 0;
-//        }
-//        if (keyword == "Var")
-//        {
-//            cout << var(pascal_program);
-//            var_check = 1;
-//            keyword.clear();
-//            i = 0;
-//        }
-//        if (keyword == "Write")//0-write,1-writeln
-//        {
-//            if (pascal_program[i] == 'l')
-//            {
-//                cout << write_or_writeln(pascal_program, 1);
-//                writeln_check = 1;
-//                keyword.clear();
-//                i = 0;
-//            }
-//            else
-//            {
-//                cout << write_or_writeln(pascal_program, 0);
-//                write_check = 1;
-//                keyword.clear();
-//                i = 0;
-//            }
-//        }
-//        if (keyword == "Readln")
-//        {
-//            cout << readln(pascal_program);
-//            readln_check = 1;
-//            keyword.clear();
-//            i = 0;
-//        }
-//        if (keyword == "End.")
-//        {
-//            cout << end(pascal_program);
-//            if (program_check)
-//            {
-//                SetConsoleTextAttribute(Con, 1);
-//                cout << endl << endl << "Было использовано преобразование Program" << endl;
-//            }
-//            if (var_check)
-//            {
-//                SetConsoleTextAttribute(Con, 2);
-//                cout << "Было использовано преобразование Var" << endl;
-//            }
-//            if (write_check)
-//            {
-//                SetConsoleTextAttribute(Con, 3);
-//                cout << "Было использовано преобразование Write" << endl;
-//            }
-//            if (writeln_check)
-//            {
-//                SetConsoleTextAttribute(Con, 4);
-//                cout << "Было использовано преобразование Writeln" << endl;
-//            }
-//            if (readln_check)
-//            {
-//                SetConsoleTextAttribute(Con, 5);
-//                cout << "Было использовано преобразование Readln" << endl;
-//            }
-//            if (operation_check)
-//            {
-//                SetConsoleTextAttribute(Con, 6);
-//                cout << "Было использовано преобразование Operation" << endl;
-//            }
-//            SetConsoleTextAttribute(Con, 8);
-//            cout << "Было использовано преобразование End" << endl;
-//            SetConsoleTextAttribute(Con, 7);
-//            break;
-//        }
-//        if (keyword.find_first_of("+-*/:=") != string::npos)
-//        {
-//            cout << operations(pascal_program);
-//            operation_check = 1;
-//            keyword.clear();
-//            i = 0;
-//        }
-//        keyword += pascal_program[i];
-//        if (keyword == "\n")
-//        {
-//            keyword.clear();
-//            pascal_program.erase(0, 1);
-//            i--;
-//        }
-//
-//        i++;
-//    }
-//    return "";
-//}
-
-void change_to_c_plus_plus(string &pascal_program, string chosed_changes)
+void change_to_c_plus_plus(string& pascal_program, string chosed_changes)
 {
     if (chosed_changes == "8")
         chosed_changes = "1234567";
@@ -454,7 +349,7 @@ void change_to_c_plus_plus(string &pascal_program, string chosed_changes)
         i++;
     }
     SetConsoleTextAttribute(Con, 11);
-    cout << final_program<< endl<<endl;
+    cout << final_program << endl << endl;
     SetConsoleTextAttribute(Con, 7);
     if (program_check)
     {
@@ -492,6 +387,30 @@ void change_to_c_plus_plus(string &pascal_program, string chosed_changes)
         cout << "Было использовано преобразование End" << endl << endl << endl;
     }
     SetConsoleTextAttribute(Con, 7);
+
+    cout << "Введите название или путь к файлу, в котором хотите сохранить результат: ";
+    string save_file;
+    while (true)
+    {
+        getline(cin, save_file);
+        ofstream out;
+        out.open(save_file); // окрываем файл для записи
+        if (out.is_open())
+        {
+            out << final_program;
+            cout << "Результат сохранён" << endl << endl;
+            break;
+        }
+        else
+        {
+            cout << "Вы неправильно указали путь к файлу или/и не указали имя файла. Укажите путь и имя файла заново" << endl;
+            cin.clear();
+            cin.ignore(32767, '\n');
+        }
+        cin.seekg(0, ios::end);
+        cin.clear();
+        out.close();// закрываем файл
+    }
 }
 string possible_changes()
 {
@@ -525,7 +444,7 @@ string possible_changes()
     sort(chosed_changes.begin(), chosed_changes.end());
     for (int i = 0; i < chosed_changes.length(); i++)
     {
-        if (chosed_changes[i]== chosed_changes[i+1])
+        if (chosed_changes[i] == chosed_changes[i + 1])
         {
             chosed_changes.erase(i, 1);
             i--;

@@ -1,0 +1,17 @@
+#include <iostream>
+#include <string>
+using namespace std;
+int main()
+{
+int X;
+int Y;
+int Z;
+cout << "¬ведите X: ";
+cin >> X;
+cout << "¬ведите Y: ";
+cin >> Y;
+Z = X + Y;
+cout << "Z = ";
+cout << Z << endl;
+return 0;
+}
