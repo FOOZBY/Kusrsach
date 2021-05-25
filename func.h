@@ -7,7 +7,6 @@
 
 using namespace std;
 
-
 double getnum();
 void show_pascal(string programm,bool type);
 bool menu();
@@ -21,5 +20,6 @@ string var(string& pascal_program, bool change);
 string write_or_writeln(string& pascal_program, bool type, bool change);
 string readln(string& pascal_program, bool change);
 string operations(string& pascal_program, bool change);
+string end(string& pascal_program, bool change);
 void change_to_c_plus_plus(string& pascal_program, string chosed_changes);
 string possible_changes();

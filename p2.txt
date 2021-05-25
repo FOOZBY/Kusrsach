@@ -1,0 +1,20 @@
+#include <iostream>
+#include <string>
+using namespace std;
+int main()
+{
+Var
+X: Integer;
+Y: Real;
+Z: String;
+A: Bool;
+B: Char;
+cout << "¬ведите X: ";
+cin >> X;
+cout << "¬ведите Y: ";
+cin >> Y;
+Z := X + Y;
+cout << "Z = ";
+Writeln(Z);
+return 0;
+}

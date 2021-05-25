@@ -1,6 +1,5 @@
 ﻿#include "func.h"
 
-
 HANDLE Con = GetStdHandle(STD_OUTPUT_HANDLE);
 bool program_check = 0, var_check = 0, write_check = 0, writeln_check = 0, readln_check = 0, operation_check = 0, end_check = 0;
 double getnum()//проверка ввода
@@ -15,7 +14,6 @@ double getnum()//проверка ввода
     cin.ignore(32767, '\n');
     return value;
 }
-
 void show_pascal(string program, bool type)
 {
     SetConsoleTextAttribute(Con, 11);
@@ -36,7 +34,6 @@ void show_pascal(string program, bool type)
     }
     SetConsoleTextAttribute(Con, 7);
 }
-
 bool menu()
 {
     cout << "Выберите метод записи исходной программы: " << endl;
@@ -45,7 +42,6 @@ bool menu()
     bool chose = getnum();
     return chose ? 1 : 0;
 }
-
 string reading_from_file()
 {
     cout << "Введите название файла, если он в директории программы, иначе введите путь к файлу: ";
@@ -282,7 +278,6 @@ string end(string& pascal_program, bool change)
         return pascal_program;
     }
 }
-
 void change_to_c_plus_plus(string& pascal_program, string chosed_changes)
 {
     if (chosed_changes == "8")

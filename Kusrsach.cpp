@@ -15,6 +15,5 @@ int main()
     cout << "Программа на C++" << endl << endl;
     change_to_c_plus_plus(pascal_programm, chosed_changes);
     cout << endl;
-
     system("pause");
 }

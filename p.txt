@@ -1,8 +1,10 @@
 Program P1;
 Var
 X: Integer;
-Y: Integer;
-Z: Integer;
+Y: Real;
+Z: String;
+A: Bool;
+B: Char;
 Begin
 Write('¬ведите X: ');
 Readln(X);

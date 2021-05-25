@@ -4,8 +4,9 @@ using namespace std;
 int main()
 {
 int X;
-int Y;
-int Z;
+float Y;
+string Z;
+char A;
 cout << "¬ведите X: ";
 cin >> X;
 cout << "¬ведите Y: ";
