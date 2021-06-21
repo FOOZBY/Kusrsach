@@ -161,7 +161,7 @@ string var(string& pascal_program, bool change)//done
     {
         int i = pascal_program.find("Begin");
         string ret = pascal_program.substr(0, i);
-        pascal_program.erase(0, i + 5);
+        pascal_program.erase(0, i);
         return ret;
     }
 }//done
@@ -265,9 +265,9 @@ string operations(string& pascal_program, bool change)
         return ret;
     }
 }
-string end(string& pascal_program, bool change)
+string end(string& pascal_program, bool change, bool var_change)
 {
-    if (change)
+    if (change || var_change)
     {
         pascal_program.erase(0, pascal_program.length());
         end_check = 1;
@@ -330,7 +330,7 @@ void change_to_c_plus_plus(string& pascal_program, string chosed_changes)
         }
         if (keyword == "End.")
         {
-            final_program += end(pascal_program, chosed_changes.find("7") != string::npos);
+            final_program += end(pascal_program, chosed_changes.find("7") != string::npos, chosed_changes.find("2") != string::npos);
             break;
         }
         keyword += pascal_program[i];
