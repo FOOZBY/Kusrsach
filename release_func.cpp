@@ -1,7 +1,7 @@
 ﻿#include "func.h"
 
 HANDLE Con = GetStdHandle(STD_OUTPUT_HANDLE);
-bool program_check = 0, var_check = 0, write_check = 0, writeln_check = 0, readln_check = 0, operation_check = 0, end_check = 0;
+bool program_check = 0, var_check = 0, begin_check = 0, write_check = 0, writeln_check = 0, readln_check = 0, operation_check = 0, end_check = 0;
 double getnum()//проверка ввода
 {
     double value;
@@ -153,7 +153,7 @@ string var(string& pascal_program, bool change)//done
             if (var == "\n")
                 var = "";
         }
-        pascal_program.erase(0, i);
+        pascal_program.erase(0, i-5);
         var_check = 1;
         return var_cpp;
     }
@@ -165,6 +165,29 @@ string var(string& pascal_program, bool change)//done
         return ret;
     }
 }//done
+string begin(string& pascal_program, bool change)
+{
+    string ret = "";
+    if (change)
+    {
+        int i = 0;
+        while (ret.find("Begin"))
+        {
+            ret += pascal_program[i];
+            i++;
+        }
+        pascal_program.erase(0, 5);
+        begin_check = 1;
+        return "";           
+    }
+    else
+    {
+        int i = pascal_program.find('\n');
+        ret = pascal_program.substr(0, i);
+        pascal_program.erase(0, i);
+        return ret + '\n';
+    }
+}
 string write_or_writeln(string& pascal_program, bool type, bool change)//done
 {
     if (change)
@@ -265,9 +288,9 @@ string operations(string& pascal_program, bool change)
         return ret;
     }
 }
-string end(string& pascal_program, bool change, bool var_change)
+string end(string& pascal_program, bool change)
 {
-    if (change || var_change)
+    if (change)
     {
         pascal_program.erase(0, pascal_program.length());
         end_check = 1;
@@ -280,8 +303,8 @@ string end(string& pascal_program, bool change, bool var_change)
 }
 void change_to_c_plus_plus(string& pascal_program, string chosed_changes)
 {
-    if (chosed_changes == "8")
-        chosed_changes = "1234567";
+    if (chosed_changes == "9")
+        chosed_changes = "12345678";
     SetConsoleTextAttribute(Con, 11);
     int length = pascal_program.length();
     string keyword = "", final_program = "";
@@ -301,36 +324,42 @@ void change_to_c_plus_plus(string& pascal_program, string chosed_changes)
             keyword.clear();
             i = 0;
         }
+        if (keyword == "Begin")
+        {
+            final_program += begin(pascal_program, chosed_changes.find("3") != string::npos);
+            keyword.clear();
+            i = 0;
+        }
         if (keyword == "Write")//0-write,1-writeln
         {
             if (pascal_program[i] == 'l')
             {
-                final_program += write_or_writeln(pascal_program, 1, chosed_changes.find("4") != string::npos);//writeln-4
+                final_program += write_or_writeln(pascal_program, 1, chosed_changes.find("5") != string::npos);//writeln-4
                 keyword.clear();
                 i = 0;
             }
             else
             {
-                final_program += write_or_writeln(pascal_program, 0, chosed_changes.find("3") != string::npos);//write-3
+                final_program += write_or_writeln(pascal_program, 0, chosed_changes.find("4") != string::npos);//write-3
                 keyword.clear();
                 i = 0;
             }
         }
         if (keyword == "Readln")
         {
-            final_program += readln(pascal_program, chosed_changes.find("5") != string::npos);
+            final_program += readln(pascal_program, chosed_changes.find("6") != string::npos);
             keyword.clear();
             i = 0;
         }
         if (keyword.find_first_of("+-*/:=") != string::npos)
         {
-            final_program += operations(pascal_program, chosed_changes.find("6") != string::npos);
+            final_program += operations(pascal_program, chosed_changes.find("7") != string::npos);
             keyword.clear();
             i = 0;
         }
         if (keyword == "End.")
         {
-            final_program += end(pascal_program, chosed_changes.find("7") != string::npos, chosed_changes.find("2") != string::npos);
+            final_program += end(pascal_program, chosed_changes.find("8") != string::npos);
             break;
         }
         keyword += pascal_program[i];
@@ -355,6 +384,11 @@ void change_to_c_plus_plus(string& pascal_program, string chosed_changes)
     {
         SetConsoleTextAttribute(Con, 2);
         cout << "Было использовано преобразование Var" << endl;
+    }
+    if (begin_check)
+    {
+        SetConsoleTextAttribute(Con, 9);
+        cout << "Было использовано преобразование Begin" << endl;
     }
     if (write_check)
     {
@@ -417,22 +451,25 @@ string possible_changes()
     SetConsoleTextAttribute(Con, 2); cout << "2. Var\n X: integer;\n";
     SetConsoleTextAttribute(Con, 7); cout << "преобразуется в\n";
     SetConsoleTextAttribute(Con, 2); cout << "int X; \n" << endl;
-    SetConsoleTextAttribute(Con, 3); cout << "3. Write('текст');\n";
+    SetConsoleTextAttribute(Con, 9); cout << "3. Begin\n";
+    SetConsoleTextAttribute(Con, 7); cout << "преобразуется в\n";
+    SetConsoleTextAttribute(Con, 9); cout << "" << quotes << " " << quotes << endl;
+    SetConsoleTextAttribute(Con, 3); cout << "4. Write('текст');\n";
     SetConsoleTextAttribute(Con, 7); cout << "преобразуется в\n";
     SetConsoleTextAttribute(Con, 3); cout << "cout << " << quotes << "текст" << quotes << "; \n" << endl;
-    SetConsoleTextAttribute(Con, 4); cout << "4. Writeln('текст');\n";
+    SetConsoleTextAttribute(Con, 4); cout << "5. Writeln('текст');\n";
     SetConsoleTextAttribute(Con, 7); cout << "преобразуется в\n";
     SetConsoleTextAttribute(Con, 4); cout << "cout << " << quotes << "текст" << quotes << " << endl; \n" << endl;
-    SetConsoleTextAttribute(Con, 5); cout << "5. Readln(X);\n";
+    SetConsoleTextAttribute(Con, 5); cout << "6. Readln(X);\n";
     SetConsoleTextAttribute(Con, 7); cout << "преобразуется в\n";
     SetConsoleTextAttribute(Con, 5); cout << "cin >> X; \n" << endl;
-    SetConsoleTextAttribute(Con, 6); cout << "6. a := b + c;\n";
+    SetConsoleTextAttribute(Con, 6); cout << "7. a := b + c;\n";
     SetConsoleTextAttribute(Con, 7); cout << "преобразуется в\n";
     SetConsoleTextAttribute(Con, 6); cout << "a = b + c; \n" << endl;
-    SetConsoleTextAttribute(Con, 8); cout << "7. End.\n";
+    SetConsoleTextAttribute(Con, 8); cout << "8. End.\n";
     SetConsoleTextAttribute(Con, 7); cout << "преобразуется в\n";
     SetConsoleTextAttribute(Con, 8); cout << "return 0\n}\n" << endl;
-    SetConsoleTextAttribute(Con, 13); cout << "8. Всё выше перечисленное.\n\n";
+    SetConsoleTextAttribute(Con, 13); cout << "9. Всё выше перечисленное.\n\n";
     SetConsoleTextAttribute(Con, 7);
     cout << "Введите номера изменений,которые хотите использовать в одну строку (например: 134, будут использованы изменения под номером 1, 3 и 4): ";
     cin >> chosed_changes;
